@@ -4,6 +4,9 @@
   "description": "Actions and handlers for immutable crud operations",
   "main": "dist/index.js",
   "scripts": {
+    "clean": "rm -rf dist",
+    "build": "babel src --out-dir dist",
+    "prepublish": "npm run clean && npm run build",
     "test": "jest src",
     "flow": "flow",
     "flowtyped": "flow-typed"

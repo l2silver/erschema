@@ -14,7 +14,7 @@ type $props = {
   locationPath?: string[],
 };
 
-export default function(Immutable){
+export default function(Immutable: Object){
   return function ({name, Model, modelGenerator, defaultStateConfig = {}, otherActions = {}, locationPath}: $props) {
     let finalModelGenerator
     if (Model) {
