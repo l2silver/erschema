@@ -1,7 +1,8 @@
 // @flow
-import {Record, Map} from 'immutable'
-import createReducer from './reducer'
+import Immutable, {Record, Map} from 'immutable'
+import initializeReducer from './reducer'
 import actions from './actions'
+const createReducer = initializeReducer(Immutable)
 const getId = ()=>Math.round((Math.random() * 1000000))
 describe('reducer', function () {
   const name = 'users'
@@ -27,7 +28,6 @@ describe('reducer', function () {
       const patient = new UserModel({id})
       const createAction = actions.create(name, {id})
       const data = userReducer(undefined, createAction).data
-      console.log('data', data)
       expect(data).toEqual(new Map({[id]: patient}))
     })
     it('updates', function () {

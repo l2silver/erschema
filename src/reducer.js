@@ -1,5 +1,4 @@
 // @flow
-import {Map} from 'immutable'
 import {handleActions} from 'redux-actions'
 import actionNames from './actionNames'
 import handlers from './handlers'
@@ -15,27 +14,29 @@ type $props = {
   locationPath?: string[],
 };
 
-export default function ({name, Model, modelGenerator, defaultStateConfig = {}, otherActions = {}, locationPath}: $props) {
-  let finalModelGenerator
-  if (Model) {
-    // $FlowFixMe
-    finalModelGenerator = () => Model
-  }
-  else if (modelGenerator) {
-    finalModelGenerator = modelGenerator
-  }
-  else {
-    throw new TypeError('please include Model name')
-  }
+export default function(Immutable){
+  return function ({name, Model, modelGenerator, defaultStateConfig = {}, otherActions = {}, locationPath}: $props) {
+    let finalModelGenerator
+    if (Model) {
+      // $FlowFixMe
+      finalModelGenerator = () => Model
+    }
+    else if (modelGenerator) {
+      finalModelGenerator = modelGenerator
+    }
+    else {
+      throw new TypeError('please include Model name')
+    }
 
-  return handleActions(
-    {
-      [actionNames.create(name)]: handlers.create(finalModelGenerator, locationPath),
-      [actionNames.update(name)]: handlers.update(locationPath),
-      [actionNames.remove(name)]: handlers.remove(locationPath),
-      [actionNames.get(name)]: handlers.get(finalModelGenerator, locationPath),
-      [actionNames.index(name)]: handlers.index(finalModelGenerator, locationPath),
-      ...otherActions
-    },
-    generateDefaultState({data: new Map(), ...defaultStateConfig}))
+    return handleActions(
+      {
+        [actionNames.create(name)]: handlers.create(finalModelGenerator, locationPath),
+        [actionNames.update(name)]: handlers.update(locationPath),
+        [actionNames.remove(name)]: handlers.remove(locationPath),
+        [actionNames.get(name)]: handlers.get(finalModelGenerator, locationPath),
+        [actionNames.index(name)]: handlers.index(finalModelGenerator, locationPath),
+        ...otherActions
+      },
+      generateDefaultState(Immutable, {data: new Immutable.Map(), ...defaultStateConfig}))
+  }
 }

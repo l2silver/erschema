@@ -1,7 +1,7 @@
 // @flow
-import {Record} from 'immutable'
 
-export default function generateDefaultState(defaultPropsConfig: Object = {}){
+export default function generateDefaultState(Immutable, defaultPropsConfig: Object = {}){
+  const {Record} = Immutable
   const DefaultState = Record({
     ...defaultPropsConfig
   })
