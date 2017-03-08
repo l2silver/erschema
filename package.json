@@ -25,11 +25,11 @@
   "homepage": "https://github.com/l2silver/redux-immutable-crud#readme",
   "dependencies": {
     "humps": "^2.0.0",
-    "immutable": "^3.8.1",
-    "jest": "^19.0.2",
     "redux-actions": "^2.0.1"
   },
   "devDependencies": {
+    "immutable": "^3.8.1",
+    "jest": "^19.0.2",
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
