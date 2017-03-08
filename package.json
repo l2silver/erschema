@@ -1,0 +1,41 @@
+{
+  "name": "redux-immutable-crud",
+  "version": "1.0.0",
+  "description": "Actions and handlers for immutable crud operations",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest src",
+    "flow": "flow",
+    "flowtyped": "flow-typed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l2silver/redux-immutable-crud.git"
+  },
+  "keywords": [
+    "redux",
+    "immutable",
+    "crud"
+  ],
+  "author": "Leigh Silverstein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/l2silver/redux-immutable-crud/issues"
+  },
+  "homepage": "https://github.com/l2silver/redux-immutable-crud#readme",
+  "dependencies": {
+    "humps": "^2.0.0",
+    "immutable": "^3.8.1",
+    "jest": "^19.0.2",
+    "redux-actions": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "flow-bin": "^0.41.0",
+    "flow-typed": "^2.0.0"
+  }
+}
