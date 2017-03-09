@@ -1,6 +1,6 @@
 // @flow
 import {createAction} from 'redux-actions'
-import actionNames from './actionNames'
+import actionNames from 'resource-action-types'
 export default {
   create(entityName: string, entity: Object) {
     if (entity instanceof Error) {
@@ -18,7 +18,7 @@ export default {
     if (entityId instanceof Error) {
       return createAction(actionNames.remove(entityName))(entityId)
     }
-    return createAction(actionNames.remove(entityName))({entityId})
+    return createAction(actionNames.remove(entityName))({id: entityId})
   },
   get(entityName: string, entity: Object) {
     if (entity instanceof Error) {

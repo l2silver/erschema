@@ -28,7 +28,8 @@
   "homepage": "https://github.com/l2silver/redux-immutable-crud#readme",
   "dependencies": {
     "humps": "^2.0.0",
-    "redux-actions": "^2.0.1"
+    "redux-actions": "^2.0.1",
+    "resource-action-types": "^1.0.1"
   },
   "devDependencies": {
     "immutable": "^3.8.1",

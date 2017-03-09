@@ -1,9 +1,8 @@
 // @flow
-import * as Immutable from 'immutable'
-import initializeReducer from './reducer'
+import {Record, Map} from 'immutable'
+import createReducer from './reducer'
 import actions from './actions'
-const {Record, Map} = Immutable
-const createReducer = initializeReducer(Immutable)
+
 const getId = ()=>Math.round((Math.random() * 1000000))
 describe('reducer', function () {
   const name = 'users'

@@ -20,7 +20,7 @@ export default {
       if (error) {
         return state
       }
-      return state.deleteIn(location.concat([`${payload.entityId}`]))
+      return state.deleteIn(location.concat([`${payload.id}`]))
     }
   },
 
