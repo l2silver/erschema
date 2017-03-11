@@ -9,3 +9,4 @@ export {
   standardizeRelationship,
   schemaMapper,
 }
+export type * from './schemaMapper'
