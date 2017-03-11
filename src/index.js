@@ -1,10 +1,9 @@
 // @flow
-import actions from './actions'
-import handlers from './handlers'
-import createReducer from './reducer'
-
+import * as relationshipTypes from './relationshipTypes'
+import standardizeEntity from './standardizeEntity'
+import standardizeRelationship from './standardizeRelationship'
 export {
-  actions,
-  handlers,
-  createReducer
+  relationshipTypes,
+  standardizeEntity,
+  standardizeRelationship
 }

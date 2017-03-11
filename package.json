@@ -1,5 +1,5 @@
 {
-  "name": "redux-immutable-crud",
+  "name": "immutable-redux-crud",
   "version": "1.0.0",
   "description": "Actions and handlers for immutable crud operations",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/l2silver/redux-immutable-crud.git"
+    "url": "git+https://github.com/l2silver/immutable-redux-crud.git"
   },
   "keywords": [
     "redux",
@@ -23,9 +23,9 @@
   "author": "Leigh Silverstein",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/l2silver/redux-immutable-crud/issues"
+    "url": "https://github.com/l2silver/immutable-redux-crud/issues"
   },
-  "homepage": "https://github.com/l2silver/redux-immutable-crud#readme",
+  "homepage": "https://github.com/l2silver/immutable-redux-crud#readme",
   "dependencies": {
     "humps": "^2.0.0",
     "redux-actions": "^2.0.1",
