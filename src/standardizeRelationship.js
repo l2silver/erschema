@@ -1,6 +1,6 @@
 // @flow
 import {MANY} from './relationshipTypes'
-
+import type {$relationshipSchema} from '../types'
 export type $standardizeRelationship = {
   name: string,
   alias?: string,
@@ -12,7 +12,15 @@ export type $standardizeRelationship = {
   }
 }
 
-export default function standardizeRelationship ({name, alias, relationshipName, type, variableRelationshipName, ...otherProps}: $standardizeRelationship){
+export default function standardizeRelationship (
+  {
+    name,
+    alias,
+    relationshipName,
+    type,
+    variableRelationshipName,
+    ...otherProps
+  }: $standardizeRelationship) : $relationshipSchema{
   return {
     name,
     alias: alias || name,
