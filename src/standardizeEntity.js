@@ -2,7 +2,7 @@
 import standardizeRelationship from './standardizeRelationship'
 import type {$standardizeRelationship} from './standardizeRelationship'
 
-type $standardizeEntity = {
+export type $standardizeEntity = {
   name: string,
   properties: string[] | Object,
   id?: string,
