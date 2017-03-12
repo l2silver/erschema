@@ -14,7 +14,8 @@ export type $entitySchema = {
   name: string;
   idFunc: Function;
   properties: string[];
-  modifier?: Function;
+  modifier: (ent: Object)=>Object;
+  Model: Class<any>;
   relationships: $relationshipSchema[];
 }
 

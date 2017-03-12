@@ -5,6 +5,7 @@ import type {$entitySchema} from '../types'
 export type $standardizeEntity = {
   name: string,
   properties: string[] | Object,
+  Model: Class<any>,
   id?: string,
   idFunc?: (ent: Object)=>string,
   modifier?: (ent: Object)=>Object,
@@ -17,7 +18,8 @@ export default function standardizeEntity (
     id,
     idFunc,
     properties,
-    modifier,
+    modifier = (ent)=>ent,
+    Model,
     relationships = [],
     ...otherProps
   }: $standardizeEntity) : $entitySchema {
@@ -27,6 +29,7 @@ export default function standardizeEntity (
     idFunc: idFunc || standardIdFunc,
     properties: Array.isArray(properties) ? properties : Object.keys(properties),
     modifier,
+    Model,
     relationships: relationships.map(standardizeRelationship),
     ...otherProps
   }
