@@ -1,6 +1,6 @@
 {
   "name": "erschema",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple functions for generating entity relationship schema standard",
   "main": "dist/index.js",
   "scripts": {
