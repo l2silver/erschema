@@ -37,5 +37,8 @@
     "flow-copy-source": "^1.1.0",
     "flow-typed": "^2.0.0",
     "jest": "^19.0.2"
+  },
+  "dependencies": {
+    "chance": "^1.0.11"
   }
 }
