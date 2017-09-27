@@ -1,5 +1,5 @@
 // @flow
-import type {$schema} from './types'
+import type {$schema} from '../types'
 
 export const relationshipTypes = {
   ONE: 1,
