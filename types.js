@@ -1,21 +1,16 @@
 // @flow
 export type $relationshipSchema = {
-    name: string;
-    alias: string;
-    relationshipName: string;
+    entityName: string;
+    alias?: string;
+    name?: string;
     type: number;
-    variableRelationshipName?: {
-      names: string[];
-      getRelationshipName: Function;
-    }
 }
 
 export type $entitySchema = {
-  idFunc: Function;
-  properties: string[];
-  modifier: (ent: Object)=>Object;
-  Model: Class<any>;
-  relationships: $relationshipSchema[];
+  idFunc?: Function;
+  premodifier?: (ent: Object)=>Object;
+  modifier?: (ent: Object)=>Object;
+  relationships?: $relationshipSchema[];
 }
 
 export type $schema = {[key: string]: $entitySchema}

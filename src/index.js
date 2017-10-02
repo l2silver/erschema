@@ -18,8 +18,6 @@ export type $normalizeResponse = {
   relationships: $relationships,
 };
 
-
-
 export default function normalize(
   input: Object,
   entityName: string,
