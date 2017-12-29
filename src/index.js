@@ -1,5 +1,5 @@
 // @flow
-import type {$schema} from '../types'
+import type {$schema, $entitySchema} from '../types'
 
 export const relationshipTypes = {
   ONE: 1,
@@ -42,7 +42,7 @@ export default function normalize(
   input: Object,
   entityName: string,
   schema: $schema,
-  startingSchema?: $schema
+  startingSchema?: $entitySchema
 ) : $normalizeResponse {
   const entities = {}
   const relationships = {}
@@ -54,16 +54,15 @@ const noopModifier = (ent)=>ent;
 
 const defaultIdFunc = (ent)=>ent.id
 
-const _normalizeRecursive = function (preinput: Object, entityName: string, schema: $schema, entities: $entities, relationshipData: $relationships, startingSchema?: $schema) {
+const _normalizeRecursive = function (preinput: Object, entityName: string, schema: $schema, entities: $entities, relationshipData: $relationships, startingSchema?: $entitySchema) {
   const entitySchema = (startingSchema || schema[entityName])
   if (!entitySchema){
     throw Error(`schema ${entityName} not defined`)
   }
   const {premodifier = noopModifier, modifier = noopModifier, relationships, idFunc = defaultIdFunc} = entitySchema
-  // $FlowFixMe
   const input = premodifier(preinput);
-  // $FlowFixMe
   const inputId = idFunc(input)
+  const finalEntityName = entitySchema.nameFunc ? entitySchema.nameFunc(preinput) : entityName
   if(relationships && Array.isArray(relationships)){
     relationships.forEach(relationshipSchema => {
       const {name = relationshipSchema.entityName} = relationshipSchema
@@ -82,7 +81,7 @@ const _normalizeRecursive = function (preinput: Object, entityName: string, sche
               relationshipIds.push(relationshipIdFunc(relatedEntity))
             }
           })
-          _addToRelationships(relationshipData, entityName, name, inputId, relationshipIds)
+          _addToRelationships(relationshipData, finalEntityName, name, inputId, relationshipIds)
         }
         else {
           let relationshipId
@@ -93,12 +92,12 @@ const _normalizeRecursive = function (preinput: Object, entityName: string, sche
             relationshipId = relationshipIdFunc(relation)
             _normalizeRecursive(relation, relationshipSchema.entityName, schema, entities, relationshipData)
           }
-          _addToRelationships(relationshipData, entityName, name, inputId, relationshipId)
+          _addToRelationships(relationshipData, finalEntityName, name, inputId, relationshipId)
         }
       }
     })
   }
-  _addToEntities(entities, entityName, input, modifier, inputId)
+  _addToEntities(entities, finalEntityName, input, modifier, inputId)
 }
 
 const _addToRelationships = function (relationships, entityName, name, entityId, values) {
@@ -115,6 +114,5 @@ const _addToEntities = function (entities, entityName, entity, modifier, id) {
   if (!entities[entityName]) {
     entities[entityName] = {}
   }
-  // $FlowFixMe
   entities[entityName][id] = modifier({ ...entity, id})
 }

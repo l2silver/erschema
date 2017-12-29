@@ -48,6 +48,18 @@ describe('reducerUtils', function () {
       }
       
       schema = {
+        pageUsers: {
+          nameFunc: ()=>'pages',
+          idFunc: ()=>'users',
+          modifier: (user)=>({id: user.id}),
+          relationships: [
+            {
+              entityName: 'articles',
+              name: 'article',
+              type: relationshipTypes.ONE
+            }
+          ]
+        },
         articles: {
           relationships: [
             {
@@ -59,7 +71,7 @@ describe('reducerUtils', function () {
         comments: {},
       };
     })
-    it('returns entities and relationships based on the input', function () {
+    it('basic example', function () {
       const {entities, relationships} = normalize(input, 'articles', schema)
       expect(entities).toEqual({
         articles: {
@@ -79,6 +91,40 @@ describe('reducerUtils', function () {
             [input.id]: [comment.id]
           }
         }
+      })
+    })
+    it('example with nameFunc', function () {
+      const {entities, relationships} = normalize({
+        article: input
+      }, 'pageUsers', schema)
+      expect(entities).toEqual({
+        articles: {
+          [input.id]: {
+            id: input.id,
+            title: input.title,
+            comments: input.comments,
+          }
+        },
+        comments: {
+          [comment.id]: comment
+        },
+        pages: {
+          users: {
+            id: "users",
+          },
+        },
+      })
+      expect(relationships).toEqual({
+        articles: {
+          comments: {
+            [input.id]: [comment.id]
+          }
+        },
+        pages: {
+          article: {
+            ['users']: input.id,
+          },
+        },
       })
     })
   })

@@ -7,7 +7,8 @@ export type $relationshipSchema = {
 }
 
 export type $entitySchema = {
-  idFunc?: Function;
+  nameFunc?: (ent: Object)=>string;
+  idFunc?: (ent: Object)=>string;
   premodifier?: (ent: Object)=>Object;
   modifier?: (ent: Object)=>Object;
   relationships?: $relationshipSchema[];

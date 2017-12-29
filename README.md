@@ -11,7 +11,7 @@ A normalizer that uses plain objects for schema definitions so that they can be 
 ## Usage
 
 ```
-import normalize, {relationshipTypes} from 'erschema'
+import normalize, {validateSchema, relationshipTypes} from 'erschema'
 
 const users = {
   idFunc: (ent)=>ent.id,
@@ -43,6 +43,8 @@ const data = [{
     name: 'Harry'
   }]
 }]
+
+validateSchema(schema)
 
 const {entities, relationships} = normalize(data, 'users', schema);
 console.log(entities)
@@ -83,7 +85,7 @@ For example:
 
 type $ONE = 1;
 type $MANY = 2;
-
+type $id = string | number;
 type $relationships = Array<{
   entityName: string,
   name?: string,
@@ -94,7 +96,8 @@ type $relationships = Array<{
 type $schema = {
   modifier?: (ent)=>ent,
   premodifier?: (ent)=>ent,
-  idFunc?: (ent)=>string|id,
+  idFunc?: (ent)=>string | $id,
+  nameFunc?: (ent)=>string,
   relationships: $relationships,
 }
 
@@ -116,6 +119,12 @@ Runs right after an entity is processed
 Used to retrieve the id of an entity
 
 * default is (ent)=>ent.id
+
+### nameFunc
+Used to change the entityName of the entity after its schema has been retrieved
+
+* default is (ent)=>ent.id
+
 
 ### relationships
 An array of relationshipSchemas used to build relationships
