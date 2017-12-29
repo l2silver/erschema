@@ -1,5 +1,7 @@
 # erschema
 
+[![Build Status](https://travis-ci.org/l2silver/erschema.svg?branch=master)](https://travis-ci.org/l2silver/erschema)
+
 A normalizer that uses plain objects for schema definitions so that they can be reused with other libraries
 
 ## Setup
